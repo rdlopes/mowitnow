@@ -1,7 +1,7 @@
 # language: fr
 Fonctionnalité: Pilotage automatique des tondeuses.
 
-  #{NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.}
+  NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
 
   Scénario: Prenons le cas de deux tondeuses et vérifions leur position finale après exécution des instructions.
 

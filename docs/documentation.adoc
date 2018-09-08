@@ -1,0 +1,92 @@
+:toc: right
+:backend: html5
+:doctitle: Living Documentation
+:doctype: book
+:icons: font
+:!numbered:
+:!linkcss:
+:sectanchors:
+:sectlink:
+:docinfo:
+:source-highlighter: highlightjs
+:toclevels: 3
+:hardbreaks:
+
+= *Living Documentation*
+
+== *Sommaire*
+[cols="12*^m", options="header,footer"]
+|===
+3+|Scénarios 7+|Étapes 2+|Fonctionnalités: 1
+
+|[green]#*Succès*#
+|[red]#*Échecs*#
+|Total
+|[green]#*Succès*#
+|[red]#*Échecs*#
+|[purple]#*Ignorés*#
+|[maroon]#*En cours*#
+|[yellow]#*Non implémentés*#
+|[blue]#*Manquants*#
+|Total
+|Durée
+|Status
+
+12+^|*<<Pilotage-automatique-des-tondeuses.>>*
+|1
+|0
+|1
+|6
+|0
+|0
+|0
+|0
+|0
+|6
+|176ms
+|[green]#*passed*#
+12+^|*Total*
+|1|0|1|6|0|0|0|0|0|6 2+|176ms
+|===
+
+== *Fonctionnalités*
+
+[[Pilotage-automatique-des-tondeuses., Pilotage automatique des tondeuses.]]
+=== *Pilotage automatique des tondeuses.*
+
+ifndef::backend-pdf[]
+minmax::Pilotage-automatique-des-tondeuses.[]
+endif::[]
+****
+NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
+****
+
+==== Scénario: Prenons le cas de deux tondeuses et vérifions leur position finale après exécution des instructions.
+
+****
+Etant donné ::
+=====
+une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(101ms)#
+=====
+Et ::
+=====
+une tondeuse 1 intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(017ms)#
+=====
+Et ::
+=====
+une tondeuse 2 intialement en position 3, 3, E qui doit exécuter les instructions AADAADADDA icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+=====
+Quand ::
+=====
+les instructions sont exécutées icon:thumbs-up[role="green",title="Passed"] [small right]#(009ms)#
+=====
+Alors ::
+=====
+la position finale de la tondeuse 1 doit être 1 3 N icon:thumbs-up[role="green",title="Passed"] [small right]#(048ms)#
+=====
+Et ::
+=====
+la position finale de la tondeuse 2 doit être 5 1 E icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+=====
+****
+
