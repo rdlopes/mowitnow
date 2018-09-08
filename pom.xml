@@ -156,7 +156,7 @@
                 <configuration>
                     <outputFileName>index</outputFileName>
                     <outputDir>../docs</outputDir>
-                    <format>pdf</format>
+                    <format>html</format>
                 </configuration>
                 <executions>
                     <execution>

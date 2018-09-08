@@ -1,5 +1,5 @@
 :toc: right
-:backend: pdf
+:backend: html
 :doctitle: Living Documentation
 :doctype: book
 :icons: font
@@ -43,10 +43,10 @@
 |0
 |0
 |6
-|163ms
+|174ms
 |[green]#*passed*#
 12+^|*Total*
-|1|0|1|6|0|0|0|0|0|6 2+|163ms
+|1|0|1|6|0|0|0|0|0|6 2+|174ms
 |===
 
 == *Fonctionnalités*
@@ -54,6 +54,9 @@
 [[Pilotage-automatique-des-tondeuses., Pilotage automatique des tondeuses.]]
 === *Pilotage automatique des tondeuses.*
 
+ifndef::backend-pdf[]
+minmax::Pilotage-automatique-des-tondeuses.[]
+endif::[]
 ****
 NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
 ****
@@ -63,11 +66,11 @@ NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions
 ****
 Etant donné ::
 =====
-une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(101ms)#
+une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(112ms)#
 =====
 Et ::
 =====
-une tondeuse 1 intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(011ms)#
+une tondeuse 1 intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(012ms)#
 =====
 Et ::
 =====
