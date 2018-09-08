@@ -1,1 +1,1 @@
-# mowitnow
+# Mow It Now [![Build Status](https://travis-ci.org/rdlopes/mowitnow.svg?branch=master)](https://travis-ci.org/rdlopes/mowitnow)
