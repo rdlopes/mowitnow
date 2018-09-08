@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: mowitnow
+
+logging:
+  level:
+    root: warn
+    com.rdlopes: debug
+
+mow-it-now:
+  sketch:
+    width: 500
+    height: 500
+    grass-wild-image: classpath:images/grass-50.png
+    grass-mown-image: classpath:images/lawn-50.png
+    mower-stopped-image: classpath:images/mower-black-50.png
+    mower-images:
+    - classpath:images/mower-blue-50.png
+    - classpath:images/mower-red-50.png
+    - classpath:images/mower-yellow-50.png
+    - classpath:images/mower-green-50.png
