@@ -4,7 +4,7 @@ import com.rdlopes.mowitnow.bdd.spring.BaseSpringSteps;
 import com.rdlopes.mowitnow.domain.Lawn;
 import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
-import com.rdlopes.mowitnow.parser.LawnDescriptionFileParser;
+import com.rdlopes.mowitnow.parser.DescriptionFileParser;
 import cucumber.api.java.fr.Alors;
 import cucumber.api.java.fr.Et;
 import cucumber.api.java.fr.Etantdonné;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.*;
 public class FileParsingSteps extends BaseSpringSteps {
 
     @Autowired
-    private LawnDescriptionFileParser lawnDescriptionFileParser;
+    private DescriptionFileParser descriptionFileParser;
 
     private File descriptionFile;
 
@@ -33,8 +33,8 @@ public class FileParsingSteps extends BaseSpringSteps {
 
     @Quand("^le fichier est lu par l'application$")
     public void fileIsParsedByApplication() throws Throwable {
-        lawnDescriptionFileParser.parse(descriptionFile);
-        this.lawn = lawnDescriptionFileParser.getLawn();
+        descriptionFileParser.parse(descriptionFile);
+        this.lawn = descriptionFileParser.getLawn();
     }
 
     @Alors("^on doit retrouver une pelouse de taille (\\d+)x(\\d+)$")

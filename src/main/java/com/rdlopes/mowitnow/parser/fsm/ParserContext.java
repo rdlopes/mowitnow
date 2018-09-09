@@ -5,7 +5,7 @@ import com.rdlopes.mowitnow.domain.Position;
 
 import java.util.Queue;
 
-public interface Context {
+public interface ParserContext {
 
     boolean hasMoreLines();
 

@@ -59,10 +59,10 @@ include::/Users/ruilopes/IdeaProjects/mowitnow/target/test-classes/features/cuke
 |0
 |0
 |5
-|139ms
+|175ms
 |[green]#*passed*#
 12+^|*Total*
-|2|0|2|11|0|0|0|0|0|11 2+|143ms
+|2|0|2|11|0|0|0|0|0|11 2+|179ms
 |===
 
 == *Fonctionnalités*
@@ -119,7 +119,7 @@ endif::[]
 ****
 Etant donné ::
 =====
-un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt icon:thumbs-up[role="green",title="Passed"] [small right]#(085ms)#
+un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt icon:thumbs-up[role="green",title="Passed"] [small right]#(121ms)#
 =====
 Quand ::
 =====
@@ -131,7 +131,7 @@ on doit retrouver une pelouse de taille 6x6 icon:thumbs-up[role="green",title="P
 =====
 Et ::
 =====
-une tondeuse à l'indexe 0 en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+une tondeuse à l'indexe 0 en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(008ms)#
 =====
 Et ::
 =====

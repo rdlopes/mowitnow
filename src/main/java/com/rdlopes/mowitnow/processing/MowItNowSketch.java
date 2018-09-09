@@ -40,14 +40,8 @@ public class MowItNowSketch extends PApplet {
     @Override
     public void draw() {
         log.trace("draw called");
-
-        // white background
         background(0);
-
-        // draw grid
         lawnItem.draw();
-
-        // start animating
         lawnItem.mow();
     }
 

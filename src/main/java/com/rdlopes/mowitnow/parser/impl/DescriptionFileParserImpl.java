@@ -3,9 +3,9 @@ package com.rdlopes.mowitnow.parser.impl;
 import com.rdlopes.mowitnow.domain.Lawn;
 import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
-import com.rdlopes.mowitnow.parser.LawnDescriptionFileParser;
+import com.rdlopes.mowitnow.parser.DescriptionFileParser;
 import com.rdlopes.mowitnow.parser.ParsingException;
-import com.rdlopes.mowitnow.parser.fsm.Context;
+import com.rdlopes.mowitnow.parser.fsm.ParserContext;
 import com.rdlopes.mowitnow.parser.fsm.State;
 import lombok.Data;
 import lombok.Getter;
@@ -24,7 +24,7 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Slf4j
 @Data
-public class LawnDescriptionFileParserImpl implements LawnDescriptionFileParser, Context {
+public class DescriptionFileParserImpl implements DescriptionFileParser, ParserContext {
 
     @Getter
     @NonNull
@@ -37,7 +37,7 @@ public class LawnDescriptionFileParserImpl implements LawnDescriptionFileParser,
 
     private Mower.MowerBuilder mowerBuilder = null;
 
-    public LawnDescriptionFileParserImpl() {
+    public DescriptionFileParserImpl() {
         this.state = States.READING_LAWN_DIMENSIONS;
     }
 

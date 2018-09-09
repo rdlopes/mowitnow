@@ -4,7 +4,7 @@ import com.rdlopes.mowitnow.domain.Lawn;
 
 import java.io.File;
 
-public interface LawnDescriptionFileParser {
+public interface DescriptionFileParser {
     void parse(File descriptionFile) throws ParsingException;
 
     Lawn getLawn();

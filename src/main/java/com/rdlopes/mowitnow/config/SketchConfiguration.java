@@ -1,9 +1,6 @@
 package com.rdlopes.mowitnow.config;
 
-import com.rdlopes.mowitnow.domain.Lawn;
-import com.rdlopes.mowitnow.domain.Mower;
-import com.rdlopes.mowitnow.domain.Position;
-import com.rdlopes.mowitnow.parser.LawnDescriptionFileParser;
+import com.rdlopes.mowitnow.parser.DescriptionFileParser;
 import com.rdlopes.mowitnow.processing.MowItNowSketch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
@@ -14,8 +11,6 @@ import org.springframework.context.annotation.Profile;
 import processing.core.PApplet;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Optional;
 
 @Slf4j
@@ -25,28 +20,7 @@ import java.util.Optional;
 public class SketchConfiguration {
 
     @Bean
-    public MowItNowSketch defaultSketch(SketchProperties sketchProperties) {
-        Mower mower1 = Mower.builder()
-                            .position(Position.of(1, 2, Mower.Orientation.N))
-                            .instructions(new LinkedList<>(Mower.Instruction.parseAll("GAGAGAGAA")))
-                            .build();
-
-        Mower mower2 = Mower.builder()
-                            .position(Position.of(3, 3, Mower.Orientation.E))
-                            .instructions(new LinkedList<>(Mower.Instruction.parseAll("AADAADADDA")))
-                            .build();
-
-        Lawn lawn = Lawn.builder()
-                        .width(6)
-                        .height(6)
-                        .mowers(Arrays.asList(mower1, mower2))
-                        .build();
-
-        return new MowItNowSketch(sketchProperties, lawn);
-    }
-
-    @Bean
-    public ApplicationRunner processingRunner(SketchProperties sketchProperties, LawnDescriptionFileParser lawnDescriptionFileParser) {
+    public ApplicationRunner processingRunner(SketchProperties sketchProperties, DescriptionFileParser descriptionFileParser) {
         log.trace("processingRunner called with sketchProperties:{}", sketchProperties);
         return args -> {
             log.info("Starting application with args:{}", args);
@@ -64,8 +38,8 @@ public class SketchConfiguration {
                     System.exit(-1);
 
                 } else {
-                    lawnDescriptionFileParser.parse(descriptionFile);
-                    Optional.ofNullable(lawnDescriptionFileParser.getLawn())
+                    descriptionFileParser.parse(descriptionFile);
+                    Optional.ofNullable(descriptionFileParser.getLawn())
                             .ifPresent(lawn -> {
                                 MowItNowSketch sketch = new MowItNowSketch(sketchProperties, lawn);
                                 String[] sketchArgs = new String[]{MowItNowSketch.class.getName()};

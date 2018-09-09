@@ -3,7 +3,7 @@ package com.rdlopes.mowitnow.parser.impl;
 import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
 import com.rdlopes.mowitnow.parser.ParsingException;
-import com.rdlopes.mowitnow.parser.fsm.Context;
+import com.rdlopes.mowitnow.parser.fsm.ParserContext;
 import com.rdlopes.mowitnow.parser.fsm.State;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,13 +17,13 @@ import static java.util.stream.Collectors.toCollection;
 enum States implements State {
     READING_LAWN_DIMENSIONS {
         @Override
-        public boolean test(Context context) {
-            return context.hasMoreLines();
+        public boolean test(ParserContext parserContext) {
+            return parserContext.hasMoreLines();
         }
 
         @Override
-        public State process(Context context) throws ParsingException {
-            String contentLine = context.getNextLine();
+        public State process(ParserContext parserContext) throws ParsingException {
+            String contentLine = parserContext.getNextLine();
             try (Scanner scanner = new Scanner(contentLine)) {
                 int x;
                 if (scanner.hasNextInt()) {
@@ -41,7 +41,7 @@ enum States implements State {
                 }
 
                 if (x >= 0 && y >= 0) {
-                    context.setLawnDimension(x + 1, y + 1);
+                    parserContext.setLawnDimension(x + 1, y + 1);
                     return READING_MOWER_COORDINATES;
 
                 } else {
@@ -55,13 +55,13 @@ enum States implements State {
     },
     READING_MOWER_COORDINATES {
         @Override
-        public boolean test(Context context) {
-            return context.hasMoreLines();
+        public boolean test(ParserContext parserContext) {
+            return parserContext.hasMoreLines();
         }
 
         @Override
-        public State process(Context context) throws ParsingException {
-            String contentLine = context.getNextLine();
+        public State process(ParserContext parserContext) throws ParsingException {
+            String contentLine = parserContext.getNextLine();
             try (Scanner scanner = new Scanner(contentLine)) {
                 int x;
                 if (scanner.hasNextInt()) {
@@ -93,7 +93,7 @@ enum States implements State {
                 if (x >= 0 && y >= 0 && orientationCode != null) {
                     Mower.Orientation orientation = Mower.Orientation.valueOf(orientationCode);
                     Position position = Position.of(x, y, orientation);
-                    context.setMowerCoordinates(position);
+                    parserContext.setMowerCoordinates(position);
                     return READING_MOWER_INSTRUCTIONS;
 
                 } else {
@@ -107,13 +107,13 @@ enum States implements State {
     },
     READING_MOWER_INSTRUCTIONS {
         @Override
-        public boolean test(Context context) {
-            return context.hasMoreLines();
+        public boolean test(ParserContext parserContext) {
+            return parserContext.hasMoreLines();
         }
 
         @Override
-        public State process(Context context) throws ParsingException {
-            String contentLine = context.getNextLine();
+        public State process(ParserContext parserContext) throws ParsingException {
+            String contentLine = parserContext.getNextLine();
             try (Scanner scanner = new Scanner(contentLine)) {
                 String instructionCodes;
                 String pattern = EnumSet.allOf(Mower.Instruction.class)
@@ -132,8 +132,8 @@ enum States implements State {
                                                                   .map(Mower.Instruction::valueOf)
                                                                   .collect(toCollection(LinkedList::new));
 
-                    context.setMowerInstructions(instructions);
-                    return context.hasMoreLines() ? READING_MOWER_COORDINATES : END;
+                    parserContext.setMowerInstructions(instructions);
+                    return parserContext.hasMoreLines() ? READING_MOWER_COORDINATES : END;
 
                 } else {
                     throw new ParsingException("Cannot accept null instructions");
@@ -146,12 +146,12 @@ enum States implements State {
     },
     END {
         @Override
-        public boolean test(Context context) {
+        public boolean test(ParserContext parserContext) {
             return false;
         }
 
         @Override
-        public State process(Context context) {
+        public State process(ParserContext parserContext) {
             return this;
         }
     };
