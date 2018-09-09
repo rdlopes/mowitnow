@@ -67,7 +67,7 @@ class MowerItem {
                 break;
             case EAST:
                 sketch.textAlign(RIGHT, CENTER);
-                sketch.text("E︎", 0, 0, cellSize, cellSize);
+                sketch.text("E", 0, 0, cellSize, cellSize);
                 break;
             case WEST:
                 sketch.textAlign(LEFT, CENTER);
