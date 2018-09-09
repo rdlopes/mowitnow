@@ -171,6 +171,10 @@
                     <outputFileName>index</outputFileName>
                     <outputDir>../docs</outputDir>
                     <format>html</format>
+                    <toc>left</toc>
+                    <hideTags>true</hideTags>
+                    <hideScenarioKeyword>true</hideScenarioKeyword>
+                    <hardBreaks>true</hardBreaks>
                 </configuration>
                 <executions>
                     <execution>

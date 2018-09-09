@@ -1,4 +1,4 @@
-:toc: right
+:toc: left
 :backend: html
 :doctitle: Living Documentation
 :doctype: book
@@ -14,10 +14,12 @@
 
 = *Living Documentation*
 
+include::/Users/ruilopes/IdeaProjects/mowitnow/target/test-classes/features/cukedoctor-intro.adoc[leveloffset=+1]
+
 == *Sommaire*
 [cols="12*^m", options="header,footer"]
 |===
-3+|Scénarios 7+|Étapes 2+|Fonctionnalités: 1
+3+|Scénarios 7+|Étapes 2+|Fonctionnalités: 2
 
 |[green]#*Succès*#
 |[red]#*Échecs*#
@@ -32,7 +34,7 @@
 |Durée
 |Status
 
-12+^|*<<Pilotage-automatique-des-tondeuses.>>*
+12+^|*<<Pilotage-automatique>>*
 |1
 |0
 |1
@@ -43,19 +45,33 @@
 |0
 |0
 |6
-|158ms
+|003ms
+|[green]#*passed*#
+
+12+^|*<<Lecture-de-fichiers-de-description>>*
+|1
+|0
+|1
+|5
+|0
+|0
+|0
+|0
+|0
+|5
+|129ms
 |[green]#*passed*#
 12+^|*Total*
-|1|0|1|6|0|0|0|0|0|6 2+|158ms
+|2|0|2|11|0|0|0|0|0|11 2+|132ms
 |===
 
 == *Fonctionnalités*
 
-[[Pilotage-automatique-des-tondeuses., Pilotage automatique des tondeuses.]]
-=== *Pilotage automatique des tondeuses.*
+[[Pilotage-automatique, Pilotage automatique]]
+=== *Pilotage automatique*
 
 ifndef::backend-pdf[]
-minmax::Pilotage-automatique-des-tondeuses.[]
+minmax::Pilotage-automatique[]
 endif::[]
 ****
 NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
@@ -63,16 +79,16 @@ NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions
 IMPORTANT: Les indexes des tondeuses lors de la vérification des résultats commencent à 0.
 ****
 
-==== Scénario: Prenons le cas de deux tondeuses et vérifions leur position finale après exécution des instructions.
+==== Execution des instructions par le programme.
 
 ****
 Etant donné ::
 =====
-une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(106ms)#
+une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
 =====
 Et ::
 =====
-une tondeuse intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(009ms)#
+une tondeuse intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
 =====
 Et ::
 =====
@@ -84,11 +100,42 @@ les instructions sont exécutées icon:thumbs-up[role="green",title="Passed"] [s
 =====
 Alors ::
 =====
-la position finale de la tondeuse 1 doit être 1 3 N icon:thumbs-up[role="green",title="Passed"] [small right]#(041ms)#
+la position finale de la tondeuse 1 doit être 1 3 N icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
 =====
 Et ::
 =====
 la position finale de la tondeuse 2 doit être 5 1 E icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+=====
+****
+
+[[Lecture-de-fichiers-de-description, Lecture de fichiers de description]]
+=== *Lecture de fichiers de description*
+
+ifndef::backend-pdf[]
+minmax::Lecture-de-fichiers-de-description[]
+endif::[]
+==== Production d'une configuration valide à partir d'un fichier.
+
+****
+Etant donné ::
+=====
+un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt icon:thumbs-up[role="green",title="Passed"] [small right]#(077ms)#
+=====
+Quand ::
+=====
+le fichier est lu par l'application icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+=====
+Alors ::
+=====
+on doit retrouver une pelouse de taille 6x6 icon:thumbs-up[role="green",title="Passed"] [small right]#(035ms)#
+=====
+Et ::
+=====
+une tondeuse à l'indexe 0 en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+=====
+Et ::
+=====
+une tondeuse à l'indexe 1 en position 3, 3, E qui doit exécuter les instructions AADAADADDA icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
 =====
 ****
 

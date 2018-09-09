@@ -1,13 +1,13 @@
-# order: 1
-# language: fr
-# noinspection SpellCheckingInspection
-Fonctionnalité: Pilotage automatique des tondeuses.
+#order: 1
+#language: fr
+
+Fonctionnalité: Pilotage automatique
 
   NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
 
   IMPORTANT: Les indexes des tondeuses lors de la vérification des résultats commencent à 0.
 
-  Scénario: Prenons le cas de deux tondeuses et vérifions leur position finale après exécution des instructions.
+  Scénario: Execution des instructions par le programme.
 
     Etant donné une pelouse de largeur 6 et de hauteur 6
     Et une tondeuse intialement en position 1, 2, N qui doit exécuter les instructions GAGAGAGAA
@@ -15,3 +15,4 @@ Fonctionnalité: Pilotage automatique des tondeuses.
     Quand les instructions sont exécutées
     Alors la position finale de la tondeuse 1 doit être 1 3 N
     Et la position finale de la tondeuse 2 doit être 5 1 E
+

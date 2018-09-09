@@ -1,13 +1,9 @@
-# order: 2
-# language: fr
-# noinspection SpellCheckingInspection
-Fonctionnalité: Lecture d'un fichier.
+#order: 2
+#language: fr
 
-  NOTE: Le système de coordonnées utilisé ainsi que l'ensemble des instructions sont définis en introduction.
+Fonctionnalité: Lecture de fichiers de description
 
-  IMPORTANT: Les indexes des tondeuses lors de la vérification des résultats commencent à 0.
-
-  Scénario: L'invocation du parseur de fichier doit permettre de produire une configuration valide.
+  Scénario: Production d'une configuration valide à partir d'un fichier.
 
     Etant donné un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt
     Quand le fichier est lu par l'application
