@@ -20,11 +20,11 @@ public class Position {
     Position after(Mower.Instruction instruction) {
         log.trace("after called with instruction:{}", instruction);
         switch (instruction) {
-            case LEFT:
+            case G:
                 return Position.of(getX(), getY(), getOrientation().left());
-            case RIGHT:
+            case D:
                 return Position.of(getX(), getY(), getOrientation().right());
-            case FORWARD:
+            case A:
                 return forward();
             default:
                 return this;
@@ -34,13 +34,13 @@ public class Position {
     private Position forward() {
         log.trace("forward called");
         switch (getOrientation()) {
-            case NORTH:
+            case N:
                 return Position.of(getX(), getY() + 1, getOrientation());
-            case EAST:
+            case E:
                 return Position.of(getX() + 1, getY(), getOrientation());
-            case WEST:
+            case W:
                 return Position.of(getX() - 1, getY(), getOrientation());
-            case SOUTH:
+            case S:
                 return Position.of(getX(), getY() - 1, getOrientation());
             default:
                 return this;

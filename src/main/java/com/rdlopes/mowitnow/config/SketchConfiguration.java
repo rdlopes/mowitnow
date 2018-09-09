@@ -21,12 +21,12 @@ public class SketchConfiguration {
         Lawn lawn = Lawn.of(6, 6);
         Mower mower1 = Mower.builder()
                             .id(0)
-                            .position(Position.of(1, 2, Mower.Orientation.NORTH))
+                            .position(Position.of(1, 2, Mower.Orientation.N))
                             .instructions(Mower.Instruction.parseAll("GAGAGAGAA"))
                             .build();
         Mower mower2 = Mower.builder()
                             .id(1)
-                            .position(Position.of(3, 3, Mower.Orientation.EAST))
+                            .position(Position.of(3, 3, Mower.Orientation.E))
                             .instructions(Mower.Instruction.parseAll("AADAADADDA"))
                             .build();
         return new MowItNowSketch(sketchProperties, lawn, mower1, mower2);

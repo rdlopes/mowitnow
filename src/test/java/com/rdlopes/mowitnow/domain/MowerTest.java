@@ -10,7 +10,7 @@ public class MowerTest {
     public void builder_nullId_throws() {
         Throwable throwable = catchThrowable(() -> Mower.builder()
                                                         .id(null)
-                                                        .position(Position.of(1, 1, Mower.Orientation.NORTH))
+                                                        .position(Position.of(1, 1, Mower.Orientation.N))
                                                         .instructions(Mower.Instruction.parseAll("GDA"))
                                                         .build());
         assertThat(throwable).isInstanceOf(NullPointerException.class)
@@ -22,7 +22,7 @@ public class MowerTest {
     public void builder_nullInstructions_throws() {
         Throwable throwable = catchThrowable(() -> Mower.builder()
                                                         .id(1)
-                                                        .position(Position.of(1, 1, Mower.Orientation.NORTH))
+                                                        .position(Position.of(1, 1, Mower.Orientation.N))
                                                         .instructions(null)
                                                         .build());
         assertThat(throwable).isInstanceOf(NullPointerException.class)
@@ -44,7 +44,7 @@ public class MowerTest {
 
     @Test
     public void mow_nullLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.NORTH);
+        Position position = Position.of(1, 1, Mower.Orientation.N);
         Mower mower = Mower.builder()
                            .id(1)
                            .position(position)
@@ -55,7 +55,7 @@ public class MowerTest {
 
     @Test
     public void move_nullLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.NORTH);
+        Position position = Position.of(1, 1, Mower.Orientation.N);
         Mower mower = Mower.builder()
                            .id(1)
                            .position(position)
@@ -67,7 +67,7 @@ public class MowerTest {
 
     @Test
     public void move_nullInstruction_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.NORTH);
+        Position position = Position.of(1, 1, Mower.Orientation.N);
         Lawn lawn = Lawn.of(2, 2);
         Mower mower = Mower.builder()
                            .id(1)
@@ -80,7 +80,7 @@ public class MowerTest {
 
     @Test
     public void move_outsideLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.NORTH);
+        Position position = Position.of(1, 1, Mower.Orientation.N);
         Lawn lawn = Lawn.of(1, 1);
         Mower mower = Mower.builder()
                            .id(1)

@@ -15,19 +15,4 @@ public class InstructionTest {
     public void parseAll_nullString_isEmpty() {
         assertThat(Mower.Instruction.parseAll(null)).isEmpty();
     }
-
-    @Test
-    public void of_unknownString_isNull() {
-        assertThat(Mower.Instruction.of("unknown")).isNull();
-    }
-
-    @Test
-    public void of_emptyString_isNull() {
-        assertThat(Mower.Instruction.of("")).isNull();
-    }
-
-    @Test
-    public void of_nullString_isNull() {
-        assertThat(Mower.Instruction.of(null)).isNull();
-    }
 }

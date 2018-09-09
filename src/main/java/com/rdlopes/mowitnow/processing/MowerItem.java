@@ -61,19 +61,19 @@ class MowerItem {
 
         sketch.fill(255, 255, 0);
         switch (getPosition().getOrientation()) {
-            case NORTH:
+            case N:
                 sketch.textAlign(CENTER, TOP);
                 sketch.text("N", 0, 0, cellSize, cellSize);
                 break;
-            case EAST:
+            case E:
                 sketch.textAlign(RIGHT, CENTER);
                 sketch.text("E", 0, 0, cellSize, cellSize);
                 break;
-            case WEST:
+            case W:
                 sketch.textAlign(LEFT, CENTER);
                 sketch.text("W", 0, 0, cellSize, cellSize);
                 break;
-            case SOUTH:
+            case S:
                 sketch.textAlign(CENTER, BOTTOM);
                 sketch.text("S", 0, 0, cellSize, cellSize);
                 break;
