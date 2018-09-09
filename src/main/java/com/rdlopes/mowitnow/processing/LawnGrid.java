@@ -20,13 +20,13 @@ class LawnGrid {
 
     private static final int TEXT_SIZE = 15;
 
-    private SketchProperties properties;
+    private final SketchProperties properties;
 
     private final MowItNowSketch sketch;
 
     private final boolean[][] cells;
 
-    public Lawn getLawn() {
+    Lawn getLawn() {
         return lawn;
     }
 
