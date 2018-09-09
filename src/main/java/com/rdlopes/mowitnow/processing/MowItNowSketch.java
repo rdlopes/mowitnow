@@ -2,7 +2,7 @@ package com.rdlopes.mowitnow.processing;
 
 import com.rdlopes.mowitnow.config.SketchProperties;
 import com.rdlopes.mowitnow.domain.Lawn;
-import com.rdlopes.mowitnow.domain.LawnMower;
+import com.rdlopes.mowitnow.domain.Mower;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import processing.core.PApplet;
@@ -22,12 +22,12 @@ public class MowItNowSketch extends PApplet {
 
     private final List<MowerItem> mowerItems = new ArrayList<>();
 
-    public MowItNowSketch(SketchProperties properties, Lawn lawn, LawnMower... lawnMowers) {
+    public MowItNowSketch(SketchProperties properties, Lawn lawn, Mower... mowers) {
         log.trace("MowItNowSketch called with properties:{}", properties);
         this.properties = properties;
 
         this.lawnGrid = new LawnGrid(this, properties, lawn);
-        Arrays.stream(lawnMowers)
+        Arrays.stream(mowers)
               .map(lawnMower -> new MowerItem(this, properties, lawnMower))
               .forEach(mowerItems::add);
     }

@@ -15,40 +15,40 @@ import static org.assertj.core.api.Assertions.*;
 
 public class AutomaticRunSteps {
 
-    private final List<LawnMower> lawnMowers = new ArrayList<>();
+    private final List<Mower> mowers = new ArrayList<>();
 
     private Lawn lawn;
 
     private Map<Integer, Position> finalPositions;
 
     @Etantdonné("^une pelouse de largeur (\\d+) et de hauteur (\\d+)$")
-    public void aLawnOfWidthAndHeight(int width, int height) throws Throwable {
+    public void aLawnOfWidthAndHeight(int width, int height) {
         this.lawn = Lawn.of(width, height);
     }
 
     @Et("^une tondeuse (\\d+) intialement en position (\\d+), (\\d+), ([NEWS]) qui doit exécuter les instructions ([GDA]+)$")
-    public void aLawnMowerWithInitialPositionRunningInstructions(Integer id, Integer x, Integer y, String orientationLabel, String instructions) throws Throwable {
+    public void aLawnMowerWithInitialPositionRunningInstructions(Integer id, Integer x, Integer y, String orientationLabel, String instructions) {
         Orientation orientation = Orientation.of(orientationLabel);
         Position position = Position.of(x, y, orientation);
         List<Instruction> instructionList = Instruction.parseAll(instructions);
-        LawnMower lawnMower = LawnMower.builder()
-                                       .id(id)
-                                       .position(position)
-                                       .instructions(instructionList)
-                                       .build();
-        this.lawnMowers.add(lawnMower);
+        Mower mower = Mower.builder()
+                           .id(id)
+                           .position(position)
+                           .instructions(instructionList)
+                           .build();
+        this.mowers.add(mower);
     }
 
     @Quand("^les instructions sont exécutées$")
-    public void instructionsAreExecuted() throws Throwable {
-        this.finalPositions = this.lawnMowers.stream()
-                                             .sequential()
-                                             .collect(toMap(LawnMower::getId,
+    public void instructionsAreExecuted() {
+        this.finalPositions = this.mowers.stream()
+                                         .sequential()
+                                         .collect(toMap(Mower::getId,
                                                             lawnMower -> lawnMower.mow(lawn)));
     }
 
     @Alors("^la position finale de la tondeuse (\\d+) doit être (\\d+) (\\d+) ([NEWS])$")
-    public void finalMowerPositionMustBe(Integer id, Integer x, Integer y, String orientationLabel) throws Throwable {
+    public void finalMowerPositionMustBe(Integer id, Integer x, Integer y, String orientationLabel) {
         Orientation orientation = Orientation.of(orientationLabel);
         Position expectedPosition = Position.of(x, y, orientation);
         Position finalPosition = finalPositions.get(id);

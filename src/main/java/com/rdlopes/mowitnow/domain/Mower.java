@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 @Data
 @Builder
-public class LawnMower {
+public class Mower {
 
     @NonNull
     private final Integer id;

@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
- * An instruction to be executed by the {@link LawnMower}
+ * An instruction to be executed by the {@link Mower}
  */
 @Slf4j
 public enum Instruction {

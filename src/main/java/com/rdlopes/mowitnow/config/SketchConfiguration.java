@@ -28,17 +28,17 @@ public class SketchConfiguration {
     @Bean
     public MowItNowSketch defaultSketch(SketchProperties sketchProperties) {
         Lawn lawn = Lawn.of(6, 6);
-        LawnMower lawnMower1 = LawnMower.builder()
-                                        .id(0)
-                                        .position(Position.of(1, 2, Orientation.NORTH))
-                                        .instructions(Instruction.parseAll("GAGAGAGAA"))
-                                        .build();
-        LawnMower lawnMower2 = LawnMower.builder()
-                                        .id(1)
-                                        .position(Position.of(3, 3, Orientation.EAST))
-                                        .instructions(Instruction.parseAll("AADAADADDA"))
-                                        .build();
-        return new MowItNowSketch(sketchProperties, lawn, lawnMower1, lawnMower2);
+        Mower mower1 = Mower.builder()
+                            .id(0)
+                            .position(Position.of(1, 2, Orientation.NORTH))
+                            .instructions(Instruction.parseAll("GAGAGAGAA"))
+                            .build();
+        Mower mower2 = Mower.builder()
+                            .id(1)
+                            .position(Position.of(3, 3, Orientation.EAST))
+                            .instructions(Instruction.parseAll("AADAADADDA"))
+                            .build();
+        return new MowItNowSketch(sketchProperties, lawn, mower1, mower2);
     }
 
     @Bean

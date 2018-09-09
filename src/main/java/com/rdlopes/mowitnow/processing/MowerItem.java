@@ -1,7 +1,7 @@
 package com.rdlopes.mowitnow.processing;
 
 import com.rdlopes.mowitnow.config.SketchProperties;
-import com.rdlopes.mowitnow.domain.LawnMower;
+import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -17,27 +17,27 @@ class MowerItem {
 
     private final SketchProperties properties;
 
-    private final LawnMower lawnMower;
+    private final Mower mower;
 
     private PImage image;
 
     private PImage stoppedImage;
 
-    MowerItem(MowItNowSketch sketch, SketchProperties properties, LawnMower lawnMower) {
+    MowerItem(MowItNowSketch sketch, SketchProperties properties, Mower mower) {
         this.sketch = sketch;
         this.properties = properties;
-        this.lawnMower = lawnMower;
+        this.mower = mower;
     }
 
     void setup() {
         // load image from properties
-        image = sketch.loadImage(properties.getMowerImages().get(lawnMower.getId() % properties.getMowerImages().size()));
+        image = sketch.loadImage(properties.getMowerImages().get(mower.getId() % properties.getMowerImages().size()));
         stoppedImage = sketch.loadImage(properties.getMowerStoppedImage());
     }
 
     @NonNull
     public Position getPosition() {
-        return lawnMower.getPosition();
+        return mower.getPosition();
     }
 
     void draw(LawnGrid grid) {
@@ -83,11 +83,11 @@ class MowerItem {
     }
 
     boolean hasInstructions() {
-        return !lawnMower.getInstructions().isEmpty();
+        return !mower.getInstructions().isEmpty();
     }
 
     void moveOn(LawnGrid lawnGrid) {
-        lawnMower.move(lawnGrid.getLawn(), lawnMower.popNextInstruction());
+        mower.move(lawnGrid.getLawn(), mower.popNextInstruction());
         lawnGrid.setMown(getPosition());
     }
 }
