@@ -6,12 +6,16 @@ import com.rdlopes.mowitnow.domain.Position;
 import lombok.extern.slf4j.Slf4j;
 import processing.core.PImage;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 import static java.lang.Math.min;
+import static java.util.stream.Collectors.toList;
 import static processing.core.PConstants.BOTTOM;
 import static processing.core.PConstants.LEFT;
 
 @Slf4j
-class LawnGrid {
+class LawnItem {
 
     private static final int CELL_MARGIN = 2;
 
@@ -26,6 +30,8 @@ class LawnGrid {
 
     private final boolean[][] cells;
 
+    private final List<MowerItem> mowerItems;
+
     Lawn getLawn() {
         return lawn;
     }
@@ -38,9 +44,12 @@ class LawnGrid {
 
     private final float cellSize;
 
-    LawnGrid(MowItNowSketch sketch, SketchProperties properties, Lawn lawn) {
+    LawnItem(MowItNowSketch sketch, SketchProperties properties, Lawn lawn) {
         this.sketch = sketch;
         this.properties = properties;
+        this.mowerItems = IntStream.range(0, lawn.getMowers().size())
+                                   .mapToObj(index -> new MowerItem(sketch, this, lawn.getMowers().get(index), properties, index))
+                                   .collect(toList());
 
         this.cells = new boolean[lawn.getWidth()][lawn.getHeight()];
         this.lawn = lawn;
@@ -51,11 +60,16 @@ class LawnGrid {
         // load images from properties
         wildGrassImage = sketch.loadImage(properties.getGrassWildImage());
         mownGrassImage = sketch.loadImage(properties.getGrassMownImage());
+
+        // setup mower items
+        this.mowerItems.forEach(MowerItem::setup);
+
+        // initialize states
+        this.mowerItems.forEach(mowerItem -> setMown(mowerItem.getPosition()));
     }
 
     void draw() {
         sketch.pushStyle();
-
         sketch.noFill();
         sketch.stroke(0, 100, 0);
         sketch.strokeWeight(STROKE_WEIGHT);
@@ -78,8 +92,10 @@ class LawnGrid {
                 sketch.text(coordinates, xInsideStart, yInsideStart, sizeInside, sizeInside);
             }
         }
-
         sketch.popStyle();
+
+        // draw mower items
+        this.mowerItems.forEach(MowerItem::draw);
     }
 
     void setMown(Position position) {
@@ -112,5 +128,12 @@ class LawnGrid {
 
     private float cellSizeInside() {
         return cellSize - CELL_MARGIN;
+    }
+
+    void mow() {
+        mowerItems.stream()
+                  .filter(MowerItem::hasInstructions)
+                  .findFirst()
+                  .ifPresent(mowerItem -> mowerItem.mow(this));
     }
 }

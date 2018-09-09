@@ -2,26 +2,15 @@ package com.rdlopes.mowitnow.domain;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class MowerTest {
 
     @Test
-    public void builder_nullId_throws() {
-        Throwable throwable = catchThrowable(() -> Mower.builder()
-                                                        .id(null)
-                                                        .position(Position.of(1, 1, Mower.Orientation.N))
-                                                        .instructions(Mower.Instruction.parseAll("GDA"))
-                                                        .build());
-        assertThat(throwable).isInstanceOf(NullPointerException.class)
-                             .hasNoCause()
-                             .hasMessage("id");
-    }
-
-    @Test
     public void builder_nullInstructions_throws() {
         Throwable throwable = catchThrowable(() -> Mower.builder()
-                                                        .id(1)
                                                         .position(Position.of(1, 1, Mower.Orientation.N))
                                                         .instructions(null)
                                                         .build());
@@ -33,62 +22,11 @@ public class MowerTest {
     @Test
     public void builder_nullPosition_throws() {
         Throwable throwable = catchThrowable(() -> Mower.builder()
-                                                        .id(1)
                                                         .position(null)
-                                                        .instructions(Mower.Instruction.parseAll("GDA"))
+                                                        .instructions(new LinkedList<>(Mower.Instruction.parseAll("GDA")))
                                                         .build());
         assertThat(throwable).isInstanceOf(NullPointerException.class)
                              .hasNoCause()
                              .hasMessage("position");
     }
-
-    @Test
-    public void mow_nullLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.N);
-        Mower mower = Mower.builder()
-                           .id(1)
-                           .position(position)
-                           .instructions(Mower.Instruction.parseAll("GDA"))
-                           .build();
-        assertThat(mower.mow(null)).isEqualTo(position);
-    }
-
-    @Test
-    public void move_nullLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.N);
-        Mower mower = Mower.builder()
-                           .id(1)
-                           .position(position)
-                           .instructions(Mower.Instruction.parseAll("GDA"))
-                           .build();
-        mower.move(null, mower.popNextInstruction());
-        assertThat(mower.getPosition()).isEqualTo(position);
-    }
-
-    @Test
-    public void move_nullInstruction_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.N);
-        Lawn lawn = Lawn.of(2, 2);
-        Mower mower = Mower.builder()
-                           .id(1)
-                           .position(position)
-                           .instructions(Mower.Instruction.parseAll("GDA"))
-                           .build();
-        mower.move(lawn, null);
-        assertThat(mower.getPosition()).isEqualTo(position);
-    }
-
-    @Test
-    public void move_outsideLawn_returnsSamePosition() {
-        Position position = Position.of(1, 1, Mower.Orientation.N);
-        Lawn lawn = Lawn.of(1, 1);
-        Mower mower = Mower.builder()
-                           .id(1)
-                           .position(position)
-                           .instructions(Mower.Instruction.parseAll("A"))
-                           .build();
-        mower.move(lawn, mower.popNextInstruction());
-        assertThat(mower.getPosition()).isEqualTo(position);
-    }
-
 }

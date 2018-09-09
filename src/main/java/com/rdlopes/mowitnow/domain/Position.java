@@ -18,12 +18,12 @@ public class Position {
     private final Mower.Orientation orientation;
 
     Position after(Mower.Instruction instruction) {
-        log.trace("after called with instruction:{}", instruction);
+        Position.log.trace("after called with instruction:{}", instruction);
         switch (instruction) {
             case G:
-                return Position.of(getX(), getY(), getOrientation().left());
+                return Position.of(getX(), getY(), getOrientation().left);
             case D:
-                return Position.of(getX(), getY(), getOrientation().right());
+                return Position.of(getX(), getY(), getOrientation().right);
             case A:
                 return forward();
             default:
@@ -32,7 +32,7 @@ public class Position {
     }
 
     private Position forward() {
-        log.trace("forward called");
+        Position.log.trace("forward called");
         switch (getOrientation()) {
             case N:
                 return Position.of(getX(), getY() + 1, getOrientation());

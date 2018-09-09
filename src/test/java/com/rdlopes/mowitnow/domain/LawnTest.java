@@ -8,23 +8,10 @@ public class LawnTest {
 
     @Test
     public void contains_null_isFalse() {
-        Lawn lawn = Lawn.of(5, 5);
+        Lawn lawn = Lawn.builder()
+                        .width(5)
+                        .height(5)
+                        .build();
         assertThat(lawn.contains(null)).isFalse();
-    }
-
-    @Test
-    public void of_nullWidth_Throws() {
-        Throwable throwable = catchThrowable(() -> Lawn.of(null, 1));
-        assertThat(throwable).isInstanceOf(NullPointerException.class)
-                             .hasNoCause()
-                             .hasMessage("width");
-    }
-
-    @Test
-    public void of_nullHeight_Throws() {
-        Throwable throwable = catchThrowable(() -> Lawn.of(1, null));
-        assertThat(throwable).isInstanceOf(NullPointerException.class)
-                             .hasNoCause()
-                             .hasMessage("height");
     }
 }

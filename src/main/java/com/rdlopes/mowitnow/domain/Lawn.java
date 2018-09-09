@@ -1,21 +1,28 @@
 package com.rdlopes.mowitnow.domain;
 
-import lombok.NonNull;
-import lombok.Value;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A value object referring to the lawn to be mowed.
  */
 @Slf4j
-@Value(staticConstructor = "of")
+@Data
+@Builder
 public class Lawn {
 
     @NonNull
-    private final Integer width;
+    private final int width;
 
     @NonNull
-    private final Integer height;
+    private final int height;
+
+    @Singular
+    @NonNull
+    private final List<Mower> mowers;
 
     boolean contains(Position position) {
         log.trace("contains called with position:{}", position);
@@ -24,5 +31,12 @@ public class Lawn {
                position.getX() < getWidth() &&
                position.getY() >= 0 &&
                position.getY() < getHeight();
+    }
+
+    public List<Position> mow() {
+        return mowers.stream()
+                     .sequential()
+                     .map(mower -> mower.mow(this))
+                     .collect(Collectors.toList());
     }
 }

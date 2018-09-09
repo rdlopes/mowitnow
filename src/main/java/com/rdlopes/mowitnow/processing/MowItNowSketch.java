@@ -18,18 +18,13 @@ public class MowItNowSketch extends PApplet {
 
     private final SketchProperties properties;
 
-    private final LawnGrid lawnGrid;
-
-    private final List<MowerItem> mowerItems = new ArrayList<>();
+    private final LawnItem lawnItem;
 
     public MowItNowSketch(SketchProperties properties, Lawn lawn, Mower... mowers) {
         log.trace("MowItNowSketch called with properties:{}", properties);
         this.properties = properties;
 
-        this.lawnGrid = new LawnGrid(this, properties, lawn);
-        Arrays.stream(mowers)
-              .map(lawnMower -> new MowerItem(this, properties, lawnMower))
-              .forEach(mowerItems::add);
+        this.lawnItem = new LawnItem(this, properties, lawn);
     }
 
     @Override
@@ -43,12 +38,7 @@ public class MowItNowSketch extends PApplet {
         log.trace("setup called");
         frameRate(1);
 
-        // setup items
-        this.lawnGrid.setup();
-        this.mowerItems.forEach(MowerItem::setup);
-
-        // initialize states
-        this.mowerItems.forEach(mowerItem -> lawnGrid.setMown(mowerItem.getPosition()));
+        this.lawnItem.setup();
     }
 
     @Override
@@ -59,16 +49,10 @@ public class MowItNowSketch extends PApplet {
         background(0);
 
         // draw grid
-        lawnGrid.draw();
+        lawnItem.draw();
 
-        // draw mowers
-        this.mowerItems.forEach(mowerItem -> mowerItem.draw(lawnGrid));
-
-        // update state
-        this.mowerItems.stream()
-                       .filter(MowerItem::hasInstructions)
-                       .findFirst()
-                       .ifPresent(mowerItem -> mowerItem.moveOn(lawnGrid));
+        // start animating
+        lawnItem.mow();
     }
 
     PImage loadImage(Resource resource) {

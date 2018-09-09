@@ -1,6 +1,7 @@
 package com.rdlopes.mowitnow.processing;
 
 import com.rdlopes.mowitnow.config.SketchProperties;
+import com.rdlopes.mowitnow.domain.Lawn;
 import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
 import lombok.NonNull;
@@ -17,21 +18,27 @@ class MowerItem {
 
     private final SketchProperties properties;
 
+    private LawnItem lawnItem;
+
     private final Mower mower;
+
+    private int index;
 
     private PImage image;
 
     private PImage stoppedImage;
 
-    MowerItem(MowItNowSketch sketch, SketchProperties properties, Mower mower) {
+    MowerItem(MowItNowSketch sketch, LawnItem lawnItem, Mower mower, SketchProperties properties, int index) {
         this.sketch = sketch;
         this.properties = properties;
+        this.lawnItem = lawnItem;
         this.mower = mower;
+        this.index = index;
     }
 
     void setup() {
         // load image from properties
-        image = sketch.loadImage(properties.getMowerImages().get(mower.getId() % properties.getMowerImages().size()));
+        image = sketch.loadImage(properties.getMowerImages().get(index % properties.getMowerImages().size()));
         stoppedImage = sketch.loadImage(properties.getMowerStoppedImage());
     }
 
@@ -40,15 +47,15 @@ class MowerItem {
         return mower.getPosition();
     }
 
-    void draw(LawnGrid grid) {
+    void draw() {
         sketch.pushStyle();
         sketch.imageMode(CENTER);
 
-        float cellSize = grid.cellSizeFull();
+        float cellSize = lawnItem.cellSizeFull();
         float halfCellSize = cellSize / 2;
 
-        float xStart = grid.cellX(getPosition().getX()) + halfCellSize;
-        float yStart = grid.cellY(getPosition().getY()) + halfCellSize;
+        float xStart = lawnItem.cellX(getPosition().getX()) + halfCellSize;
+        float yStart = lawnItem.cellY(getPosition().getY()) + halfCellSize;
         float imageSize = cellSize * IMAGE_CELL_SCALE;
 
         PImage mowerImage = hasInstructions() ? image :
@@ -86,8 +93,8 @@ class MowerItem {
         return !mower.getInstructions().isEmpty();
     }
 
-    void moveOn(LawnGrid lawnGrid) {
-        mower.move(lawnGrid.getLawn(), mower.popNextInstruction());
-        lawnGrid.setMown(getPosition());
+    public void mow(LawnItem lawnItem) {
+        mower.move(lawnItem.getLawn(), mower.getInstructions().poll());
+        lawnItem.setMown(getPosition());
     }
 }
