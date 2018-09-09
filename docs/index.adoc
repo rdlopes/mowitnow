@@ -59,10 +59,10 @@ include::/Users/ruilopes/IdeaProjects/mowitnow/target/test-classes/features/cuke
 |0
 |0
 |5
-|129ms
+|139ms
 |[green]#*passed*#
 12+^|*Total*
-|2|0|2|11|0|0|0|0|0|11 2+|132ms
+|2|0|2|11|0|0|0|0|0|11 2+|143ms
 |===
 
 == *Fonctionnalités*
@@ -84,7 +84,7 @@ IMPORTANT: Les indexes des tondeuses lors de la vérification des résultats com
 ****
 Etant donné ::
 =====
-une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+une pelouse de largeur 6 et de hauteur 6 icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
 =====
 Et ::
 =====
@@ -96,7 +96,7 @@ une tondeuse intialement en position 3, 3, E qui doit exécuter les instructions
 =====
 Quand ::
 =====
-les instructions sont exécutées icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+les instructions sont exécutées icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
 =====
 Alors ::
 =====
@@ -119,15 +119,15 @@ endif::[]
 ****
 Etant donné ::
 =====
-un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt icon:thumbs-up[role="green",title="Passed"] [small right]#(077ms)#
+un fichier de description de la pelouse situé dans src/test/resources/descriptions/lawn6x6-2mowers.txt icon:thumbs-up[role="green",title="Passed"] [small right]#(085ms)#
 =====
 Quand ::
 =====
-le fichier est lu par l'application icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+le fichier est lu par l'application icon:thumbs-up[role="green",title="Passed"] [small right]#(008ms)#
 =====
 Alors ::
 =====
-on doit retrouver une pelouse de taille 6x6 icon:thumbs-up[role="green",title="Passed"] [small right]#(035ms)#
+on doit retrouver une pelouse de taille 6x6 icon:thumbs-up[role="green",title="Passed"] [small right]#(037ms)#
 =====
 Et ::
 =====
