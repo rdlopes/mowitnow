@@ -7,10 +7,8 @@ import com.rdlopes.mowitnow.parser.fsm.Context;
 import com.rdlopes.mowitnow.parser.fsm.State;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;
 import static java.util.stream.Collectors.toCollection;
@@ -81,7 +79,11 @@ enum States implements State {
                 }
 
                 String orientationCode;
-                if (scanner.hasNext("[NEWS]")) {
+                String pattern = EnumSet.allOf(Mower.Orientation.class)
+                                        .stream()
+                                        .map(Enum::name)
+                                        .collect(Collectors.joining("", "[", "]"));
+                if (scanner.hasNext(pattern)) {
                     orientationCode = scanner.next();
 
                 } else {
@@ -114,7 +116,11 @@ enum States implements State {
             String contentLine = context.getNextLine();
             try (Scanner scanner = new Scanner(contentLine)) {
                 String instructionCodes;
-                if (scanner.hasNext("[LRF]+")) {
+                String pattern = EnumSet.allOf(Mower.Instruction.class)
+                                        .stream()
+                                        .map(Enum::name)
+                                        .collect(Collectors.joining("", "[", "]+"));
+                if (scanner.hasNext(pattern)) {
                     instructionCodes = scanner.next();
 
                 } else {
