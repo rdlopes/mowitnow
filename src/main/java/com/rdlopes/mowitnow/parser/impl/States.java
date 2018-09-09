@@ -7,7 +7,6 @@ import com.rdlopes.mowitnow.parser.fsm.Context;
 import com.rdlopes.mowitnow.parser.fsm.State;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,7 +1,6 @@
 package com.rdlopes.mowitnow.processing;
 
 import com.rdlopes.mowitnow.config.SketchProperties;
-import com.rdlopes.mowitnow.domain.Lawn;
 import com.rdlopes.mowitnow.domain.Mower;
 import com.rdlopes.mowitnow.domain.Position;
 import lombok.NonNull;
@@ -18,11 +17,11 @@ class MowerItem {
 
     private final SketchProperties properties;
 
-    private LawnItem lawnItem;
+    private final LawnItem lawnItem;
 
     private final Mower mower;
 
-    private int index;
+    private final int index;
 
     private PImage image;
 

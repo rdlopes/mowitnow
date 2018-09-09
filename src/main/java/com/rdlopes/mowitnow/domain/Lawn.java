@@ -1,6 +1,9 @@
 package com.rdlopes.mowitnow.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.Singular;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

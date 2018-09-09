@@ -2,16 +2,12 @@ package com.rdlopes.mowitnow.processing;
 
 import com.rdlopes.mowitnow.config.SketchProperties;
 import com.rdlopes.mowitnow.domain.Lawn;
-import com.rdlopes.mowitnow.domain.Mower;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 public class MowItNowSketch extends PApplet {
@@ -20,7 +16,7 @@ public class MowItNowSketch extends PApplet {
 
     private final LawnItem lawnItem;
 
-    public MowItNowSketch(SketchProperties properties, Lawn lawn, Mower... mowers) {
+    public MowItNowSketch(SketchProperties properties, Lawn lawn) {
         log.trace("MowItNowSketch called with properties:{}", properties);
         this.properties = properties;
 

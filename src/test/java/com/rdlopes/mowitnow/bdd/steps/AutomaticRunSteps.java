@@ -20,8 +20,6 @@ public class AutomaticRunSteps extends BaseSpringSteps {
 
     private List<Position> finalPositions;
 
-    private Lawn lawn;
-
     @Etantdonné("^une pelouse de largeur (\\d+) et de hauteur (\\d+)$")
     public void aLawnOfWidthAndHeight(int width, int height) {
         this.lawnBuilder = Lawn.builder()
@@ -42,8 +40,8 @@ public class AutomaticRunSteps extends BaseSpringSteps {
 
     @Quand("^les instructions sont exécutées$")
     public void instructionsAreExecuted() {
-        this.lawn = lawnBuilder.build();
-        this.finalPositions = this.lawn.mow();
+        Lawn lawn = lawnBuilder.build();
+        this.finalPositions = lawn.mow();
     }
 
     @Alors("^la position finale de la tondeuse (\\d+) doit être (\\d+) (\\d+) ([NEWS])$")

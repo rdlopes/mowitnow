@@ -32,17 +32,13 @@ class LawnItem {
 
     private final List<MowerItem> mowerItems;
 
-    Lawn getLawn() {
-        return lawn;
-    }
-
     private final Lawn lawn;
+
+    private final float cellSize;
 
     private PImage mownGrassImage;
 
     private PImage wildGrassImage;
-
-    private final float cellSize;
 
     LawnItem(MowItNowSketch sketch, SketchProperties properties, Lawn lawn) {
         this.sketch = sketch;
@@ -54,6 +50,10 @@ class LawnItem {
         this.cells = new boolean[lawn.getWidth()][lawn.getHeight()];
         this.lawn = lawn;
         this.cellSize = min(properties.getWidth() / lawn.getWidth(), properties.getHeight() / lawn.getHeight());
+    }
+
+    Lawn getLawn() {
+        return lawn;
     }
 
     void setup() {
