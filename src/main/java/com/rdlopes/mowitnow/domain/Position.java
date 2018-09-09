@@ -15,9 +15,9 @@ public class Position {
     private final Integer y;
 
     @NonNull
-    private final Orientation orientation;
+    private final Mower.Orientation orientation;
 
-    Position after(Instruction instruction) {
+    Position after(Mower.Instruction instruction) {
         log.trace("after called with instruction:{}", instruction);
         switch (instruction) {
             case LEFT:

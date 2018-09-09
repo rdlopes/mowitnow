@@ -28,9 +28,9 @@ public class AutomaticRunSteps {
 
     @Et("^une tondeuse (\\d+) intialement en position (\\d+), (\\d+), ([NEWS]) qui doit exécuter les instructions ([GDA]+)$")
     public void aLawnMowerWithInitialPositionRunningInstructions(Integer id, Integer x, Integer y, String orientationLabel, String instructions) {
-        Orientation orientation = Orientation.of(orientationLabel);
+        Mower.Orientation orientation = Mower.Orientation.of(orientationLabel);
         Position position = Position.of(x, y, orientation);
-        List<Instruction> instructionList = Instruction.parseAll(instructions);
+        List<Mower.Instruction> instructionList = Mower.Instruction.parseAll(instructions);
         Mower mower = Mower.builder()
                            .id(id)
                            .position(position)
@@ -49,7 +49,7 @@ public class AutomaticRunSteps {
 
     @Alors("^la position finale de la tondeuse (\\d+) doit être (\\d+) (\\d+) ([NEWS])$")
     public void finalMowerPositionMustBe(Integer id, Integer x, Integer y, String orientationLabel) {
-        Orientation orientation = Orientation.of(orientationLabel);
+        Mower.Orientation orientation = Mower.Orientation.of(orientationLabel);
         Position expectedPosition = Position.of(x, y, orientation);
         Position finalPosition = finalPositions.get(id);
         assertThat(finalPosition).isEqualTo(expectedPosition);

@@ -8,16 +8,16 @@ public class OrientationTest {
 
     @Test
     public void of_unknownString_isNull() {
-        assertThat(Instruction.of("unknown")).isNull();
+        assertThat(Mower.Instruction.of("unknown")).isNull();
     }
 
     @Test
     public void of_emptyString_isNull() {
-        assertThat(Instruction.of("")).isNull();
+        assertThat(Mower.Instruction.of("")).isNull();
     }
 
     @Test
     public void of_nullString_isNull() {
-        assertThat(Instruction.of(null)).isNull();
+        assertThat(Mower.Instruction.of(null)).isNull();
     }
 }
