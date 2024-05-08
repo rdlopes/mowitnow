@@ -173,6 +173,16 @@
                 <version>${cukedoctor-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>generate-pages</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <outputFileName>index</outputFileName>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>generate-pdf</id>
                         <goals>
                             <goal>execute</goal>
