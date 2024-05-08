@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 public class ParserConfiguration {
-
-    @Bean
-    public DescriptionFileParser configurationFileParser() {
-        return new DescriptionFileParserImpl();
-    }
-
+  
+  @Bean
+  public DescriptionFileParser configurationFileParser() {
+    return new DescriptionFileParserImpl();
+  }
+  
 }

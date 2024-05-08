@@ -5,5 +5,5 @@ import com.rdlopes.mowitnow.parser.ParsingException;
 import java.util.function.Predicate;
 
 public interface State extends Predicate<ParserContext> {
-    State process(ParserContext parserContext) throws ParsingException;
+  State process(ParserContext parserContext) throws ParsingException;
 }

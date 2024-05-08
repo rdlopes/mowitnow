@@ -15,7 +15,7 @@ mow-it-now:
     grass-mown-image: classpath:images/lawn-50.png
     mower-stopped-image: classpath:images/mower-black-50.png
     mower-images:
-    - classpath:images/mower-blue-50.png
-    - classpath:images/mower-red-50.png
-    - classpath:images/mower-yellow-50.png
-    - classpath:images/mower-green-50.png
+      - classpath:images/mower-blue-50.png
+      - classpath:images/mower-red-50.png
+      - classpath:images/mower-yellow-50.png
+      - classpath:images/mower-green-50.png

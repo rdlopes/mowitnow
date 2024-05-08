@@ -9,11 +9,11 @@ import static java.util.Arrays.deepToString;
 @Slf4j
 @SpringBootApplication
 public class MowItNowApplication {
-
-    public static void main(String[] args) {
-        log.info("main called with args:{}", deepToString(args));
-        new SpringApplicationBuilder(MowItNowApplication.class)
-                .headless(false)
-                .run(args);
-    }
+  
+  public static void main(String[] args) {
+    log.info("main called with args:{}", deepToString(args));
+    new SpringApplicationBuilder(MowItNowApplication.class)
+        .headless(false)
+        .run(args);
+  }
 }

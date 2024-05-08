@@ -1,0 +1,56 @@
+name: CICD
+
+on:
+  push:
+    branches: [ 'main' ]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  JAVA_VERSION: '8'
+  JAVA_DISTRIBUTION: 'corretto'
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    name: 'Build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: 'maven'
+
+      - name: Maven Packaging
+        run: mvn package
+
+      - name: Document Features
+        run: mvn verify
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'target/cukedoctor'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+      - name: Deploy PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: Living Documentation
+          path: 'target/cukedoctor/documentation.pdf'
+          retention-days: 7

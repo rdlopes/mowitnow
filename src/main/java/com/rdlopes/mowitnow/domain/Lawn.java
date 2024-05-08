@@ -16,30 +16,30 @@ import java.util.stream.Collectors;
 @Data
 @Builder
 public class Lawn {
-
-    @NonNull
-    private final int width;
-
-    @NonNull
-    private final int height;
-
-    @Singular
-    @NonNull
-    private final List<Mower> mowers;
-
-    boolean contains(Position position) {
-        log.trace("contains called with position:{}", position);
-        return position != null &&
-               position.getX() >= 0 &&
-               position.getX() < getWidth() &&
-               position.getY() >= 0 &&
-               position.getY() < getHeight();
-    }
-
-    public List<Position> mow() {
-        return mowers.stream()
-                     .sequential()
-                     .map(mower -> mower.mow(this))
-                     .collect(Collectors.toList());
-    }
+  
+  @NonNull
+  private final int width;
+  
+  @NonNull
+  private final int height;
+  
+  @Singular
+  @NonNull
+  private final List<Mower> mowers;
+  
+  boolean contains(Position position) {
+    log.trace("contains called with position:{}", position);
+    return position != null &&
+        position.getX() >= 0 &&
+        position.getX() < getWidth() &&
+        position.getY() >= 0 &&
+        position.getY() < getHeight();
+  }
+  
+  public List<Position> mow() {
+    return mowers.stream()
+                 .sequential()
+                 .map(mower -> mower.mow(this))
+                 .collect(Collectors.toList());
+  }
 }
