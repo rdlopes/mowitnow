@@ -11,8 +11,6 @@ import java.util.Queue;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
-import static org.springframework.util.StringUtils.hasText;
-import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * The representation of an automatic lawn mower.
@@ -54,7 +52,7 @@ public class Mower {
     
     public static List<Instruction> parseAll(String instructions) {
       Instruction.log.trace("parseAll called with instructions:{}", instructions);
-      if (!hasText(instructions)) {
+      if (instructions == null || instructions.isEmpty()) {
         Instruction.log.warn("empty instructions provided");
         return emptyList();
       }

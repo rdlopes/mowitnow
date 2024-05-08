@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.Queue;
 
 import static java.nio.file.Files.readAllLines;
-import static org.springframework.util.StringUtils.hasText;
 
 @Slf4j
 @Data
@@ -72,7 +71,9 @@ public class DescriptionFileParserImpl implements DescriptionFileParser, ParserC
   
   @Override
   public boolean hasMoreLines() {
-    return !content.isEmpty() && hasText(content.peek());
+    return !content.isEmpty()
+        && !content.peek()
+                   .isEmpty();
   }
   
   @Override
