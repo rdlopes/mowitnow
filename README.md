@@ -1,4 +1,4 @@
-# Mow It Now [![Build Status](https://travis-ci.org/rdlopes/mowitnow.svg?branch=master)](https://travis-ci.org/rdlopes/mowitnow)
+# Mow It Now [![CICD](https://github.com/rdlopes/mowitnow/actions/workflows/cicd.yaml/badge.svg)](https://github.com/rdlopes/mowitnow/actions/workflows/cicd.yaml)
 
 This project is offered as a response to the Xebia challenge called "Mow It Now".
 
