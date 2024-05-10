@@ -19,14 +19,14 @@
     </parent>
 
     <scm>
-        <url>https://github.com/rdlopes/mowitnow</url>
-        <connection>scm:git:git://github.com/rdlopes/mowitnow.git</connection>
-        <developerConnection>scm:git:git@github.com:rdlopes/mowitnow.git</developerConnection>
+        <url>https://github.com/rdlopes/mowitnow-processing</url>
+        <connection>scm:git:git://github.com/rdlopes/mowitnow-processing.git</connection>
+        <developerConnection>scm:git:git@github.com:rdlopes/mowitnow-processing.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/rdlopes/mowitnow/issues</url>
+        <url>https://github.com/rdlopes/mowitnow-processing/issues</url>
     </issueManagement>
 
     <organization>

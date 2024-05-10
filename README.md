@@ -34,5 +34,5 @@ you would invoke
 
 ## Checking live documentation
 
-Documentation on the tests passed can be accessed via the [github pages for this project](https://rdlopes.github.io/mowitnow/).
+Documentation on the tests passed can be accessed via the [github pages for this project](https://rdlopes.github.io/mowitnow-processing/).
 Please note that documentation is written in French.
