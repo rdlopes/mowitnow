@@ -46,7 +46,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <processing.version>3.3.7</processing.version>
-        <cucumber.version>7.17.0</cucumber.version>
+        <cucumber.version>7.18.0</cucumber.version>
         <cukedoctor.version>3.9.0</cukedoctor.version>
         <cukedoctor-maven-plugin.version>${cukedoctor.version}</cukedoctor-maven-plugin.version>
         <spring-statemachine.version>4.0.0</spring-statemachine.version>
